@@ -97,8 +97,7 @@
 <p>​    1.时间加减</p>
 <p>​    2.数据边界属性</p>
 <p>​    3.闹钟提示闪烁</p>
-<h3 id="蓝桥杯单片机第八届初赛试题-电子钟"><a href="#蓝桥杯单片机第八届初赛试题-电子钟" class="headerlink" title="蓝桥杯单片机第八届初赛试题-电子钟"></a>蓝桥杯单片机第八届初赛试题-电子钟</h3><h5 id="问题1："><a href="#问题1：" class="headerlink" title="问题1："></a>问题1：</h5><p><img src="C:\Users\信\AppData\Roaming\Typora\typora-user-images\image-20220325212658521.png" alt="image-20220325212658521"></p>
-<p>&#x3D;&#x3D;输入ds1302时是BCD码，加减，显示时用十进制&#x3D;&#x3D;</p>
+<h3 id="蓝桥杯单片机第八届初赛试题-电子钟"><a href="#蓝桥杯单片机第八届初赛试题-电子钟" class="headerlink" title="蓝桥杯单片机第八届初赛试题-电子钟"></a>蓝桥杯单片机第八届初赛试题-电子钟</h3><h5 id="问题1："><a href="#问题1：" class="headerlink" title="问题1："></a>问题1：</h5><p><em><strong>输入ds1302时是BCD码，加减，显示时用十进制</strong></em></p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">unsigned</span> <span class="type">char</span> time[<span class="number">7</span>]=&#123;<span class="number">50</span>,<span class="number">59</span>,<span class="number">23</span>&#125;;</span><br><span class="line"><span class="type">void</span> <span class="title function_">init_ds1302</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	nhour=time[<span class="number">2</span>]/<span class="number">10</span>*<span class="number">16</span>+time[<span class="number">2</span>]%<span class="number">10</span>;</span><br><span class="line">	nmin=time[<span class="number">1</span>]/<span class="number">10</span>*<span class="number">16</span>+time[<span class="number">1</span>]%<span class="number">10</span>;</span><br><span class="line">	nsec=time[<span class="number">0</span>]/<span class="number">10</span>*<span class="number">16</span>+time[<span class="number">0</span>]%<span class="number">10</span>;</span><br><span class="line">	Write_Ds1302_Byte(<span class="number">0x8e</span>,<span class="number">0x00</span>);</span><br><span class="line">	Write_Ds1302_Byte(<span class="number">0x80</span>,nsec);</span><br><span class="line">	Write_Ds1302_Byte(<span class="number">0x82</span>,nmin);</span><br><span class="line">	Write_Ds1302_Byte(<span class="number">0x84</span>,nhour);</span><br><span class="line">	Write_Ds1302_Byte(<span class="number">0x8e</span>,<span class="number">0x80</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="type">void</span> <span class="title function_">read_ds1302</span><span class="params">()</span></span><br><span class="line">&#123;</span><br><span class="line">	nsec=Read_Ds1302_Byte(<span class="number">0x81</span>);</span><br><span class="line">	nmin=Read_Ds1302_Byte(<span class="number">0x83</span>);</span><br><span class="line">	nhour=Read_Ds1302_Byte(<span class="number">0x85</span>);</span><br><span class="line">	time[<span class="number">0</span>]=nsec/<span class="number">16</span>*<span class="number">10</span>+nsec%<span class="number">16</span>;</span><br><span class="line">	time[<span class="number">1</span>]=nmin/<span class="number">16</span>*<span class="number">10</span>+nmin%<span class="number">16</span>;</span><br><span class="line">	time[<span class="number">2</span>]=nhour/<span class="number">16</span>*<span class="number">10</span>+nhour%<span class="number">16</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>这里code只演示了时、分、秒的，这样直接用time[]的十进制数来加减就很好理解了。</p>
@@ -125,7 +124,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/25/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%8D%95%E7%89%87%E6%9C%BA-%E7%9C%81%E8%B5%9B/" data-id="cl17k6ssy0001d0uu6grc0lxj" data-title="蓝桥杯 单片机 省赛" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/25/%E8%93%9D%E6%A1%A5%E6%9D%AF-%E5%8D%95%E7%89%87%E6%9C%BA-%E7%9C%81%E8%B5%9B/" data-id="cl17kv1yc0001kouud93o1jtq" data-title="蓝桥杯 单片机 省赛" class="article-share-link">Share</a>
       
       
       
@@ -176,7 +175,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2022/03/25/hello-world/" data-id="cl17k6ss10000d0uu9gcnf8u1" data-title="Hello World" class="article-share-link">Share</a>
+      <a data-url="http://example.com/2022/03/25/hello-world/" data-id="cl17kv1xg0000kouu1cshc63u" data-title="Hello World" class="article-share-link">Share</a>
       
       
       
